@@ -77,7 +77,7 @@ public class SwiftFlutterNativeScreenshotPlugin: NSObject, FlutterPlugin {
       } // writeImageToDefaultPath()
 
       @objc
-      func savedToGalleryDone(image: UIImage, error: NSError?, contextInfo: UnsafeMutableRawPointer?) {
+      func savedToGalleryDone(image: UIImage?, error: NSError?, contextInfo: UnsafeMutableRawPointer?) {
           if error == nil && self.screenshotPath != nil && !self.screenshotPath.isEmpty {
               result(self.screenshotPath)
           } else {
@@ -116,7 +116,6 @@ public class SwiftFlutterNativeScreenshotPlugin: NSObject, FlutterPlugin {
           } // guard cannot write image
 
           self.screenshotPath = path
-
-          writeImageToGallery(image: image)
+          savedToGalleryDone(image: nil, error: nil, contextInfo: nil)
       }
 }
