@@ -24,6 +24,10 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 30
 
+    if (project.android.hasProperty("namespace")) {
+        namespace 'net.bengkelrobot.flutter_native_screenshot'
+    }
+
     defaultConfig {
         minSdkVersion 16
     }
